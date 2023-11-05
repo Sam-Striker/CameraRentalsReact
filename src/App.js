@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginSignup from './Components/LoginSignup/LoginSignup';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Remove `useNavigate`
+import CustomerDashboard from './Components/Dashboard/CustomerDashboard.jsx';
+import AdminDashboard from './Components/Dashboard/AdminDashboard.jsx';
+import ClientCameras from './Components/Handlers/ClientCameras.jsx';
+import ListCameras from './Components/Handlers/ListCameras';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginSignup />} />
+        <Route
+          path="/CustomerDashboard"
+          // element={<AuthGuard component={CustomerDashboard} isAuthenticated={isAuthenticated} />}
+          element={<CustomerDashboard />} />   
+          <Route
+          path="/AdminDashboard"        
+          element={<AdminDashboard />} /> 
+          <Route
+          path="/ClientCameras"        
+          element={<ClientCameras />} /> 
+          <Route
+          path="/ListCameras"        
+          element={<ListCameras />} />       
+      </Routes>
+    </Router>
   );
 }
-
 export default App;
