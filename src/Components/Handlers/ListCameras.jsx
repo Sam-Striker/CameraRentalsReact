@@ -15,6 +15,7 @@ import {
 } from 'reactstrap';
 
 const ListCameras = () => {
+  const user = {id: localStorage.getItem("User").split(" ")[0], username: localStorage.getItem("User").split(" ")[1]};
   const [cameras, setCameras] = useState([]);
   const [formData, setFormData] = useState({
     existingId: '',
@@ -24,10 +25,11 @@ const ListCameras = () => {
     lense: '',
     status: 1,
     date: '',
+    user: user,
   });
   const [formAction, setFormAction] = useState('Submit');
   const [errorMessage, setErrorMessage] = useState('');
-  const [infoMessage, setInfoMessage] = useState('');
+  const [infoMessage, setInfoMessage] = useState(''); 
 
   useEffect(() => {
     const fetchCameras = async () => {
@@ -37,10 +39,9 @@ const ListCameras = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-        });
-
+        });          
         if (response.ok) {
-          const data = await response.json();
+          const data = await response.json();          
           setCameras(data);          
         } else {
           console.error('Failed to fetch camera data');
@@ -101,6 +102,7 @@ const ListCameras = () => {
     if (formAction === 'Submit') {
       // Handle camera creation (submitting a new camera)
       try {
+        console.log(formData);
         const response = await fetch('http://localhost:8080/24239/cam/save', {
           method: 'POST',
           headers: {
@@ -113,6 +115,7 @@ const ListCameras = () => {
             lense: formData.lense,
             date: formData.date,
             status: formData.status,
+            user: formData.user,            
           }),
         });
 
@@ -191,6 +194,8 @@ const ListCameras = () => {
     setFormAction('Submit');
   };
 
+  console.log(cameras);
+
   return (
     <div>
       <Navbar color="light" light expand="lg">
@@ -198,7 +203,7 @@ const ListCameras = () => {
           <NavbarBrand href="#">Camera Rental System</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="../components/login.jsp">Log Out</NavLink>
+              <NavLink href="/">Log Out</NavLink>
             </NavItem>
           </Nav>
         </Container>
@@ -221,10 +226,11 @@ const ListCameras = () => {
           </thead>
           <tbody>
             {cameras.map((camera) =>
+            
               camera.status === 1 ? (
                 <tr key={camera.id}>
                   <td>{camera.id}</td>
-                  <td>{camera.user ? camera.user.username : 'N/A'}</td>
+                  <td>{camera.user.username}</td>
                   <td>{camera.serialNbr}</td>
                   <td>{camera.model}</td>
                   <td>{camera.lense}</td>

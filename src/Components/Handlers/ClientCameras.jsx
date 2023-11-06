@@ -123,7 +123,7 @@ const ClientCameras = () => {
           <NavbarBrand href="#">Camera Rental System</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="../components/login.jsp">Log Out</NavLink>
+              <NavLink href="/">Log Out</NavLink>
             </NavItem>
           </Nav>
         </Container>
