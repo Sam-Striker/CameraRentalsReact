@@ -15,7 +15,7 @@ function App() {
         <Route
           path="/CustomerDashboard"
           // element={<AuthGuard component={CustomerDashboard} isAuthenticated={isAuthenticated} />}
-          element={<CustomerDashboard />} />   
+          element={<CustomerDashboard />} />
           <Route
           path="/AdminDashboard"        
           element={<AdminDashboard />} /> 

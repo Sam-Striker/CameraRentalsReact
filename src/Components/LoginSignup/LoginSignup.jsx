@@ -44,7 +44,7 @@ const LoginSignup = () => {
             body: JSON.stringify(data),
         })
             .then((response) => response.json())
-            .then((data) => {                
+            .then((data) => {                  
                 if (data.status===true) {                    
                     setInfoMessage(data.message);  
                      // Reset form fields
@@ -83,8 +83,10 @@ const LoginSignup = () => {
             body: JSON.stringify(data),
         })
             .then((response) => response.json())
-            .then((data) => {                                                              
-                if (data.status===true) {                    
+            .then((data) => {    
+                console.log(data);                                                          
+                if (data.status===true) {      
+                    localStorage.setItem("User",data.userCRed.id +" "+ data.userCRed.username); 
                     setInfoMessage(data.message);                        
                     // setIsAuthenticated(true);      
                     // console.log(isAuthenticated);                                                                                                                                   

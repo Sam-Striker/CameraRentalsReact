@@ -18,7 +18,7 @@ const AdminDashboard = () => {
           <NavbarBrand href="#">Admin Dashboard</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/ListCameras">Log Out</NavLink>
+              <NavLink href="/">Log Out</NavLink>
             </NavItem>
           </Nav>
         </Container>
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
       <Container className="mt-4">
         <h1>Welcome, Admin</h1>
         <p>This is your dashboard. You can Manage cameras and manage your App here.</p>
-        <Button color="primary" href="/">
+        <Button color="primary" href="/ListCameras">
           Add Camera
         </Button>
       </Container>
